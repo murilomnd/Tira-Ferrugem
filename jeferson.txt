@@ -1,0 +1,818 @@
+atividade 1 
+
+
+
+
+package com.mycompany.att1;
+
+import java.util.Scanner;
+
+public class Att1 {
+
+    public static void main(String[] args) {
+
+        Scanner ler = new Scanner(System.in);
+
+        double[] notas = new double[10];
+        double soma = 0;
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Digite a nota do aluno " + (i + 1) + ": ");
+            notas[i] = ler.nextDouble();
+            soma += notas[i];
+        }
+
+        double media = soma / notas.length;
+
+        double maior = notas[0];
+        double menor = notas[0];
+
+        for (int i = 1; i < notas.length; i++) {
+
+            if (notas[i] > maior) {
+                maior = notas[i];
+            }
+
+            if (notas[i] < menor) {
+                menor = notas[i];
+            }
+        }
+
+        int maiorIgual7 = 0;
+        int abaixoMedia = 0;
+
+        for (int i = 0; i < notas.length; i++) {
+
+            if (notas[i] >= 7) {
+                maiorIgual7++;
+            }
+
+            if (notas[i] < media) {
+                abaixoMedia++;
+            }
+        }
+
+        System.out.println("\n--- ESTATÍSTICAS DA TURMA ---");
+        System.out.printf("Média da turma: %.2f%n", media);
+        System.out.printf("Maior nota: %.2f%n", maior);
+        System.out.printf("Menor nota: %.2f%n", menor);
+        System.out.println("Alunos com nota >= 7: " + maiorIgual7);
+        System.out.println("Alunos abaixo da média: " + abaixoMedia);
+
+        ler.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+atividade 2 
+
+
+
+
+
+
+
+
+
+
+
+package com.mycompany.att2;
+
+import java.util.Scanner;
+
+public class Att2 {
+
+    public static void main(String[] args) {
+
+        Scanner ler = new Scanner(System.in);
+
+        int[][] matriz = new int[4][4];
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print("Digite o valor [" + i + "][" + j + "]: ");
+                matriz[i][j] = ler.nextInt();
+            }
+        }
+
+        int somaPrincipal = 0;
+        int somaSecundaria = 0;
+
+        System.out.println("\nDiagonal principal:");
+
+        for (int i = 0; i < 4; i++) {
+            System.out.println(matriz[i][i]);
+            somaPrincipal += matriz[i][i];
+        }
+
+        System.out.println("\nDiagonal secundaria:");
+
+        for (int i = 0; i < 4; i++) {
+            System.out.println(matriz[i][3 - i]);
+            somaSecundaria += matriz[i][3 - i];
+        }
+
+        System.out.println("\nSoma da diagonal principal: " + somaPrincipal);
+        System.out.println("Soma da diagonal secundaria: " + somaSecundaria);
+
+        if (somaPrincipal > somaSecundaria) {
+            System.out.println("A diagonal principal possui a maior soma.");
+        } else if (somaSecundaria > somaPrincipal) {
+            System.out.println("A diagonal secundaria possui a maior soma.");
+        } else {
+            System.out.println("As duas diagonais possuem a mesma soma.");
+        }
+
+        ler.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+atividade 3
+
+
+
+
+
+
+
+
+
+package com.mycompany.att3;
+
+import java.util.Scanner;
+
+public class Att3 {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int[] entrada = new int[15];
+        int[] distintos = new int[15];
+        int qtdDistintos = 0;
+
+        System.out.println("Digite 15 números inteiros:");
+
+        for (int i = 0; i < 15; i++) {
+            entrada[i] = scanner.nextInt();
+        }
+
+        for (int i = 0; i < entrada.length; i++) {
+            boolean jaExiste = false;
+
+            for (int j = 0; j < qtdDistintos; j++) {
+                if (entrada[i] == distintos[j]) {
+                    jaExiste = true;
+                    break;
+                }
+            }
+
+            if (!jaExiste) {
+                distintos[qtdDistintos] = entrada[i];
+                qtdDistintos++;
+            }
+        }
+
+        System.out.print("Saída: ");
+
+        for (int i = 0; i < qtdDistintos; i++) {
+            System.out.print(distintos[i] + " ");
+        }
+
+        System.out.println();
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+atividade 4 
+
+
+
+
+
+
+
+package com.mycompany.att4;
+
+import java.util.Scanner;
+
+public class Att4 {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int TAMANHO = 5;
+        int[][] original = new int[TAMANHO][TAMANHO];
+        int[][] rotacionada = new int[TAMANHO][TAMANHO];
+
+        System.out.println("Digite os elementos da matriz " + TAMANHO + "x" + TAMANHO + ":");
+
+        for (int i = 0; i < TAMANHO; i++) {
+            for (int j = 0; j < TAMANHO; j++) {
+                original[i][j] = scanner.nextInt();
+            }
+        }
+
+        for (int i = 0; i < TAMANHO; i++) {
+            for (int j = 0; j < TAMANHO; j++) {
+                rotacionada[j][TAMANHO - 1 - i] = original[i][j];
+            }
+        }
+
+        System.out.println("\nMatriz original:");
+        imprimirMatriz(original);
+
+        System.out.println("\nMatriz rotacionada:");
+        imprimirMatriz(rotacionada);
+
+        scanner.close();
+    }
+
+    public static void imprimirMatriz(int[][] matriz) {
+
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + "\t");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+atividade 5 
+
+
+
+
+
+
+
+
+package com.mycompany.att5;
+
+import java.util.Scanner;
+
+public class Att5 {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int TAMANHO = 20;
+        int[] vetorOriginal = new int[TAMANHO];
+        int[] vetorOrdenado = new int[TAMANHO];
+
+        System.out.println("Digite " + TAMANHO + " números inteiros:");
+
+        for (int i = 0; i < TAMANHO; i++) {
+            vetorOriginal[i] = scanner.nextInt();
+            vetorOrdenado[i] = vetorOriginal[i];
+        }
+
+        int trocas = 0;
+        int comparacoes = 0;
+
+        for (int i = 0; i < TAMANHO - 1; i++) {
+            for (int j = 0; j < TAMANHO - 1 - i; j++) {
+                comparacoes++;
+
+                if (vetorOrdenado[j] > vetorOrdenado[j + 1]) {
+
+                    int temp = vetorOrdenado[j];
+                    vetorOrdenado[j] = vetorOrdenado[j + 1];
+                    vetorOrdenado[j + 1] = temp;
+
+                    trocas++;
+                }
+            }
+        }
+
+        double mediana = (vetorOrdenado[9] + vetorOrdenado[10]) / 2.0;
+
+        System.out.println("\nRESULTADOS");
+
+        System.out.print("Vetor original: ");
+        imprimirVetor(vetorOriginal);
+
+        System.out.print("Vetor ordenado: ");
+        imprimirVetor(vetorOrdenado);
+
+        System.out.println("Quantidade de comparações realizadas: " + comparacoes);
+        System.out.println("Quantidade de trocas realizadas: " + trocas);
+        System.out.println("Mediana dos valores: " + mediana);
+
+        scanner.close();
+    }
+
+    public static void imprimirVetor(int[] vetor) {
+
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.print(vetor[i] + " ");
+        }
+
+        System.out.println();
+    }
+}
+
+
+
+
+
+
+
+
+
+atividade 6 
+
+
+
+
+
+
+
+
+
+
+package com.mycompany.att6;
+
+import java.util.Scanner;
+
+public class Att6 {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int[][] matriz = new int[3][3];
+
+        System.out.println("Digite os elementos da matriz 3x3:");
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matriz[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("\n--- VERIFICAÇÃO DA MATRIZ ---");
+
+        boolean ehMagica = true;
+
+        boolean[] presente = new boolean[10];
+        boolean contemApenasUmANove = true;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+
+                int valor = matriz[i][j];
+
+                if (valor >= 1 && valor <= 9) {
+                    if (presente[valor]) {
+                        contemApenasUmANove = false;
+                    } else {
+                        presente[valor] = true;
+                    }
+                } else {
+                    contemApenasUmANove = false;
+                }
+            }
+        }
+
+        if (!contemApenasUmANove) {
+            System.out.println("Falhou: A matriz NÃO contém todos os números de 1 a 9 sem repetição.");
+            ehMagica = false;
+        }
+
+        int[] somaLinhas = new int[3];
+        int[] somaColunas = new int[3];
+        int somaDiagonalPrincipal = 0;
+        int somaDiagonalSecundaria = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+
+                somaLinhas[i] += matriz[i][j];
+                somaColunas[j] += matriz[i][j];
+
+                if (i == j) {
+                    somaDiagonalPrincipal += matriz[i][j];
+                }
+
+                if (i + j == 2) {
+                    somaDiagonalSecundaria += matriz[i][j];
+                }
+            }
+        }
+
+        boolean linhasIguais = somaLinhas[0] == somaLinhas[1]
+                && somaLinhas[1] == somaLinhas[2];
+
+        if (!linhasIguais) {
+            System.out.println("Falhou: Nem todas as linhas possuem a mesma soma.");
+            ehMagica = false;
+        }
+
+        boolean colunasIguais = somaColunas[0] == somaColunas[1]
+                && somaColunas[1] == somaColunas[2];
+
+        if (!colunasIguais) {
+            System.out.println("Falhou: Nem todas as colunas possuem a mesma soma.");
+            ehMagica = false;
+        }
+
+        boolean diagonaisIguais = somaDiagonalPrincipal == somaDiagonalSecundaria;
+
+        if (!diagonaisIguais) {
+            System.out.println("Falhou: As diagonais não possuem a mesma soma.");
+            ehMagica = false;
+        }
+
+        boolean somasGeraisIguais = linhasIguais
+                && colunasIguais
+                && diagonaisIguais
+                && somaLinhas[0] == somaColunas[0]
+                && somaLinhas[0] == somaDiagonalPrincipal;
+
+        if (linhasIguais && colunasIguais && diagonaisIguais && !somasGeraisIguais) {
+            System.out.println("Falhou: As somas das linhas, colunas e diagonais não são iguais entre si.");
+            ehMagica = false;
+        }
+
+        System.out.println();
+
+        if (ehMagica) {
+            System.out.println("A matriz É MÁGICA!");
+        } else {
+            System.out.println("A matriz NÃO é mágica devido às condições acima.");
+        }
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+atividade 7 
+
+
+
+
+
+
+
+
+
+
+
+package com.mycompany.att7;
+
+import java.util.Scanner;
+
+public class Att7 {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int TAMANHO = 8;
+        int QTD_NAVIOS = 5;
+        int MAX_DISPAROS = 15;
+
+        int[][] tabuleiro = new int[TAMANHO][TAMANHO];
+
+        for (int i = 0; i < TAMANHO; i++) {
+            for (int j = 0; j < TAMANHO; j++) {
+                tabuleiro[i][j] = 0;
+            }
+        }
+
+        System.out.println("=== CADASTRO DOS NAVIOS (Posições de 0 a 7) ===");
+
+        int naviosCadastrados = 0;
+
+        while (naviosCadastrados < QTD_NAVIOS) {
+
+            System.out.println("\nDigite a linha e a coluna para o Navio "
+                    + (naviosCadastrados + 1) + ":");
+
+            int linha = scanner.nextInt();
+            int coluna = scanner.nextInt();
+
+            if (linha < 0 || linha >= TAMANHO || coluna < 0 || coluna >= TAMANHO) {
+                System.out.println("Posição inválida! As coordenadas devem ser entre 0 e 7.");
+            } else if (tabuleiro[linha][coluna] == 1) {
+                System.out.println("Posição já ocupada por outro navio!");
+            } else {
+                tabuleiro[linha][coluna] = 1;
+                naviosCadastrados++;
+                System.out.println("Navio " + naviosCadastrados + " posicionado com sucesso!");
+            }
+        }
+
+        System.out.println("\n=================================");
+        System.out.println("      INÍCIO DA PARTIDA!         ");
+        System.out.println("=================================");
+
+        int acertos = 0;
+        int erros = 0;
+        int tirosRepetidos = 0;
+        int disparosRealizados = 0;
+
+        while (disparosRealizados < MAX_DISPAROS && acertos < QTD_NAVIOS) {
+
+            System.out.println("\n- Disparo " + (disparosRealizados + 1) + " de " + MAX_DISPAROS + " -");
+            System.out.print("Digite a linha e a coluna do disparo: ");
+
+            int linha = scanner.nextInt();
+            int coluna = scanner.nextInt();
+
+            if (linha < 0 || linha >= TAMANHO || coluna < 0 || coluna >= TAMANHO) {
+                System.out.println("Posição fora do tabuleiro! Escolha valores entre 0 e 7.");
+                continue;
+            }
+
+            int estadoAtual = tabuleiro[linha][coluna];
+
+            if (estadoAtual == 0) {
+                System.out.println("Água! Você errou o alvo.");
+                tabuleiro[linha][coluna] = 2;
+                erros++;
+            } else if (estadoAtual == 1) {
+                System.out.println("Fogo! Você atingiu um navio!");
+                tabuleiro[linha][coluna] = 3;
+                acertos++;
+            } else {
+                System.out.println("Disparo repetido! Você já atirou nessa posição antes.");
+                tirosRepetidos++;
+            }
+
+            disparosRealizados++;
+
+            if (acertos == QTD_NAVIOS) {
+                System.out.println("\nParabéns! Todos os navios foram destruídos!");
+                break;
+            }
+        }
+
+        System.out.println("\n=================================");
+        System.out.println("          FIM DE JOGO            ");
+        System.out.println("=================================");
+        System.out.println("Quantidade de acertos: " + acertos);
+        System.out.println("Quantidade de erros: " + erros);
+        System.out.println("Disparos repetidos: " + tirosRepetidos);
+        System.out.println("Total de disparos efetuados: " + disparosRealizados);
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+atividade 8 
+
+
+
+
+
+package com.mycompany.att1;
+
+
+import java.util.Scanner;
+
+
+
+public class Att8 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int LINHAS = 10;
+        int COLUNAS = 12;
+      
+        int[][] cinema = new int[LINHAS][COLUNAS];
+
+        int opcao = 0;
+
+        while (opcao != 6) {
+            System.out.println("\n RESERVA DE ASSENTOS DE CINEMA ");
+            System.out.println("1 - Reservar um assento");
+            System.out.println("2 - Cancelar uma reserva");
+            System.out.println("3 - Exibir o mapa dos assentos");
+            System.out.println("4 - Mostrar quantidade de assentos livres e ocupados");
+            System.out.println("5 - Encontrar sequencia de assentos livres");
+            System.out.println("6 - Encerrar");
+            System.out.print("Escolha uma opcao: ");
+
+            opcao = scanner.nextInt();
+
+            switch (opcao) {
+                case 1:
+                   
+                    System.out.print("Informe a fileira (0 a " + (LINHAS - 1) + "): ");
+                    int lRes = scanner.nextInt();
+                    System.out.print("Informe o assento (0 a " + (COLUNAS - 1) + "): ");
+                    int cRes = scanner.nextInt();
+
+                    if (lRes < 0 || lRes >= LINHAS || cRes < 0 || cRes >= COLUNAS) {
+                        System.out.println(" Assento invalido!");
+                    } else if (cinema[lRes][cRes] == 1) {
+                        System.out.println(" Este assento ja esta ocupado!");
+                    } else {
+                        cinema[lRes][cRes] = 1;
+                        System.out.println(" Reserva realizada com sucesso!");
+                    }
+                    break;
+
+                case 2:
+                 
+                    System.out.print("Informe a fileira (0 a " + (LINHAS - 1) + "): ");
+                    int lCanc = scanner.nextInt();
+                    System.out.print("Informe o assento (0 a " + (COLUNAS - 1) + "): ");
+                    int cCanc = scanner.nextInt();
+
+                    if (lCanc < 0 || lCanc >= LINHAS || cCanc < 0 || cCanc >= COLUNAS) {
+                        System.out.println(" Assento invalido!");
+                    } else if (cinema[lCanc][cCanc] == 0) {
+                        System.out.println(" Este assento ja esta livre!");
+                    } else {
+                        cinema[lCanc][cCanc] = 0;
+                        System.out.println(" Reserva cancelada com sucesso!");
+                    }
+                    break;
+
+                case 3:
+                    
+                    System.out.println("\n--- MAPA DA SALA ---");
+                    System.out.print("      ");
+                    for (int j = 0; j < COLUNAS; j++) {
+                        System.out.printf("[%2d] ", j);
+                    }
+                    System.out.println();
+
+                    for (int i = 0; i < LINHAS; i++) {
+                        System.out.printf("Fil %d: ", i);
+                        for (int j = 0; j < COLUNAS; j++) {
+                            System.out.print("  " + cinema[i][j] + "  ");
+                        }
+                        System.out.println();
+                    }
+                    break;
+
+                case 4:
+                    
+                    int ocupados = 0;
+                    int total = LINHAS * COLUNAS;
+
+                    for (int i = 0; i < LINHAS; i++) {
+                        for (int j = 0; j < COLUNAS; j++) {
+                            if (cinema[i][j] == 1) {
+                                ocupados++;
+                            }
+                        }
+                    }
+
+                    int livres = total - ocupados;
+                    System.out.println("\n RESUMO DA SALA ");
+                    System.out.println("Assentos Livres: " + livres);
+                    System.out.println("Assentos Ocupados: " + ocupados);
+                    break;
+
+                case 5:
+                    
+                    System.out.print("Informe a quantidade de pessoas (assentos juntos): ");
+                    int qtdPessoas = scanner.nextInt();
+
+                    if (qtdPessoas <= 0 || qtdPessoas > COLUNAS) {
+                        System.out.println(" Quantidade invalida de pessoas!");
+                        break;
+                    }
+
+                    boolean encontrou = false;
+
+                    for (int i = 0; i < LINHAS; i++) {
+                        int consecutivos = 0;
+                        int inicioSequencia = -1;
+
+                        for (int j = 0; j < COLUNAS; j++) {
+                            if (cinema[i][j] == 0) {
+                                if (consecutivos == 0) {
+                                    inicioSequencia = j;
+                                }
+                                consecutivos++;
+
+                                if (consecutivos == qtdPessoas) {
+                                    int fimSequencia = inicioSequencia + qtdPessoas - 1;
+                                    System.out.println("\n Sequencia encontrada!");
+                                    System.out.println("Fileira: " + i);
+                                    System.out.println("Assentos disponiveis: " + inicioSequencia + " ate " + fimSequencia);
+                                    encontrou = true;
+                                    break;
+                                }
+                            } else {
+                                consecutivos = 0;
+                            }
+                        }
+
+                        if (encontrou) {
+                            break; 
+                        }
+                    }
+
+                    if (!encontrou) {
+                        System.out.println(" Nao foi possivel encontrar " + qtdPessoas + " assentos juntos na mesma fileira.");
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Encerrando o sistema");
+                    break;
+
+                default:
+                    System.out.println(" Opcao invalida Tente novamente.");
+                    break;
+            }
+        }
+
+        scanner.close();
+    }
+}
